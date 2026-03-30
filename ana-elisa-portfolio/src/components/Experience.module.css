@@ -1,0 +1,118 @@
+.experience {
+  padding: 6rem 2rem;
+  background: var(--cream);
+  color: var(--black);
+}
+
+.title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: 10px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Card com sombra vermelha */
+.card {
+  background: var(--white);
+  padding: 2rem;
+  border: 3px solid var(--black);
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: -10px;
+  bottom: -10px;
+  border: 3px solid var(--red);
+  z-index: -1;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card h3 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.5rem;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+  letter-spacing: 2px;
+}
+
+.period {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--black);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Certificados */
+.certs {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.certsTitle {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .certGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.certImg {
+  width: 100%;
+  height: auto;
+  border: 3px solid var(--black);
+}

@@ -1,0 +1,89 @@
+.contact {
+  padding: 6rem 2rem;
+  background: var(--red);
+  text-align: center;
+}
+
+.inner {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 12vw, 5rem);
+  color: var(--white);
+  margin-bottom: 3rem;
+  letter-spacing: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.item h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.item a {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--white);
+  transition: opacity 0.2s ease;
+}
+
+.item a:hover {
+  opacity: 0.75;
+}
+.instagramButton {
+  margin: 10px auto;
+
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+
+  transition: all 0.3s ease;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.instagramButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.instagramButton:hover .icon {
+  color: white;
+}

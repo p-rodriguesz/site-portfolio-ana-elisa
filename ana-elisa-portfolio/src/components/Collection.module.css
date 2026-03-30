@@ -1,0 +1,57 @@
+.collection {
+  background: var(--black);
+  padding-top: 6rem;
+}
+
+.title {
+  text-align: center;
+  padding: 0 2rem 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 12vw, 10rem);
+  color: var(--white);
+  letter-spacing: 10px;
+}
+
+.fullWidth {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.fullWidth img {
+  width: 100%;
+  height: auto;
+}
+
+.description {
+  padding: 4rem 2rem;
+  background: var(--cream);
+  color: var(--black);
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.description h3 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--red);
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+
+.description p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.9;
+  max-width: 900px;
+  margin: 0 auto;
+}

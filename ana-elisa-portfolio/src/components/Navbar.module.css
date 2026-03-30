@@ -1,0 +1,98 @@
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.nav.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(230, 57, 70, 0.3);
+}
+
+.logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.5rem;
+  color: var(--white);
+  letter-spacing: 2px;
+}
+
+/* ── Menu ── */
+.menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.menu li a {
+  font-family: 'Space Mono', monospace;
+  color: var(--white);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: var(--red);
+}
+
+/* ── Hamburguer ── */
+.toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .toggle {
+    display: flex;
+  }
+
+  .menu {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .menu.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .menu li a {
+    font-size: 1rem;
+    letter-spacing: 4px;
+  }
+
+  /* animação hamburguer → X */
+  .toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .toggle.open span:nth-child(2) { opacity: 0; }
+  .toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
