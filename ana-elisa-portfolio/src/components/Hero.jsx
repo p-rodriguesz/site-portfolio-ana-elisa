@@ -1,7 +1,7 @@
 import styles from "./Hero.module.css";
 
-// Substitua pelo caminho da sua imagem hero
-const HERO_IMAGE = "/images/hero.jpg";
+// Placeholder hero image (replace with your real .jpg/.webp when available)
+const HERO_IMAGE = "/images/hero.svg";
 
 export default function Hero() {
   return (

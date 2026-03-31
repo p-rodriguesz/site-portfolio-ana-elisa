@@ -1,0 +1,65 @@
+name: CI & Deploy to Vercel
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
+
+      - name: Deploy to Vercel (preview on branches/PRs, prod on main/master)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npm install -g vercel@latest
+
+          # Determine branch name: for PRs use GITHUB_HEAD_REF, otherwise extract from GITHUB_REF
+          if [ -n "$GITHUB_HEAD_REF" ]; then
+            BRANCH="$GITHUB_HEAD_REF"
+          else
+            BRANCH=${GITHUB_REF##refs/heads/}
+          fi
+
+          echo "Detected branch: $BRANCH"
+
+          # Build base deploy command
+          DEPLOY_CMD="vercel --confirm --token \"$VERCEL_TOKEN\" ./build"
+
+          # If org/project provided, append flags so the deployment targets the correct project
+          if [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
+            DEPLOY_CMD="$DEPLOY_CMD --org $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID"
+          fi
+
+          # For main or master, deploy to production
+          if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
+            echo "Deploying to production for branch $BRANCH"
+            eval "$DEPLOY_CMD --prod"
+          else
+            echo "Deploying preview for branch $BRANCH"
+            eval "$DEPLOY_CMD"
+          fi
+
+

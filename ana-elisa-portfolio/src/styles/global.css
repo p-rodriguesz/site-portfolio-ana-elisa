@@ -1,5 +1,5 @@
 /* ─── Google Fonts ─── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Bodoni+Moda:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Bodoni+Moda:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
 
 /* ─── Variáveis ─── */
 :root {
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'Gelasio', serif;
   background-color: var(--black);
   color: var(--white);
   overflow-x: hidden;

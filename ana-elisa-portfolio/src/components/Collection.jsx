@@ -1,6 +1,7 @@
 import { useInView } from "../hooks/useInView";
 import { collections } from "../data/content";
 import LookItem from "./LookItem";
+import FlowerAnimation from "./FlowerAnimation";
 import styles from "./Collection.module.css";
 
 export default function Collection() {
@@ -15,7 +16,7 @@ export default function Collection() {
             ref={titleRef}
             className={`${styles.title} ${titleInView ? styles.visible : ""}`}
           >
-            <h2>{col.title}</h2>
+            <FlowerAnimation title={col.title} />
           </div>
 
           {/* Moodboard full width */}
