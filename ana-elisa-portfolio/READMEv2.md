@@ -12,10 +12,10 @@ npm start
 ## Como personalizar
 
 ### 1. Imagens
-Coloque todas as suas imagens em `/public/images/` e atualize os caminhos em `src/data/content.js`.
+Coloque todas as suas imagens em `/public/images/` e atualize os caminhos em `src/data/content.jsx`.
 
 ### 2. Conteúdo
-Edite o arquivo `src/data/content.js` para atualizar:
+Edite o arquivo `src/data/content.jsx` para atualizar:
 - Informações pessoais (`profile`)
 - Coleções, moodboards, croquis e looks (`collections`)
 - Experiências profissionais (`experiences`)
@@ -29,7 +29,7 @@ No array `collections`, duplique o objeto e preencha com os novos dados.
 ```
 src/
 ├── components/       ← um arquivo .jsx + .module.css por seção
-├── data/content.js   ← TODO o conteúdo editável fica aqui
+├── data/content.jsx   ← TODO o conteúdo editável fica aqui
 ├── hooks/useInView.js← animação de scroll (não precisa mexer)
 ├── styles/global.css ← variáveis de cor e reset
 └── App.jsx           ← monta todas as seções em ordem
