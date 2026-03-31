@@ -1,0 +1,15 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "ana-elisa-portfolio/build" }
+    }
+  ],
+  "outputDirectory": "ana-elisa-portfolio/build",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/ana-elisa-portfolio/build/index.html" }
+  ]
+}
+
