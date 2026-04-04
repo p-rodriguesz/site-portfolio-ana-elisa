@@ -20,11 +20,22 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   font-family: 'Gelasio', serif;
   background-color: var(--black);
   color: var(--white);
   overflow-x: hidden;
+}
+
+body.intro-locked {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 img {
