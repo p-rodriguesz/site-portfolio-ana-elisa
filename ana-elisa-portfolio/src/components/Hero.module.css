@@ -1,9 +1,173 @@
 .hero {
-  width: 100%;
-  margin-top: 60px;
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1600px;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, #111 0%, #090909 100%);
 }
 
-.hero img {
-  width: 100%;
-  height: auto;
+.pageFrame {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 240, 230, 0.97) 100%);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.28);
+  transform-style: preserve-3d;
 }
+
+.pageImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(0.98) brightness(0.92);
+  transform: scale(1.02);
+}
+
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.94);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  transition: transform 180ms ease, background 180ms ease, opacity 180ms ease, border-color 180ms ease;
+}
+
+.carouselArrow span {
+  font-size: 1.9rem;
+  line-height: 1;
+  margin-top: -0.15rem;
+}
+
+.carouselArrow:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.62);
+}
+
+.carouselArrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.carouselArrow:disabled {
+  cursor: progress;
+  opacity: 0.5;
+}
+
+.carouselArrowLeft {
+  left: 1rem;
+}
+
+.carouselArrowRight {
+  right: 1rem;
+}
+
+.pageFrame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 22%, transparent 78%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.08));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pageWash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(248, 244, 237, 0.18) 0%, rgba(248, 244, 237, 0.08) 45%, rgba(10, 10, 10, 0.12) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.revealButton {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(1.4rem, 3vw, 2.2rem);
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--black);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease, background 160ms ease;
+}
+
+.revealButton::before {
+  content: "✦";
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--red);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.revealButton:hover {
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.revealButton:active {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.revealButton:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
+@media (max-width: 767px) {
+  .carouselArrow {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .carouselArrowLeft {
+    left: 0.7rem;
+  }
+
+  .carouselArrowRight {
+    right: 0.7rem;
+  }
+
+  .revealButton {
+    bottom: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+}
+

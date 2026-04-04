@@ -11,7 +11,16 @@ export default function About() {
         className={`${styles.container} ${inView ? styles.visible : ""}`}
         ref={ref}
       >
-        <h2>SOBRE</h2>
+        <div className={styles.titleRow}>
+          <h2>SOBRE</h2>
+          <a
+            className={styles.moreButton}
+            href="/sobre"
+            aria-label="Abrir mais informações sobre a Ana Elisa"
+          >
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
         <p className={styles.subtitle}>— FASHION DESIGNER • {profile.location}</p>
 
         <div className={styles.infoBlock}>
