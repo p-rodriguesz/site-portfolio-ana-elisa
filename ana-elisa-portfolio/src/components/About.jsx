@@ -18,7 +18,22 @@ export default function About() {
             href="/sobre"
             aria-label="Abrir mais informações sobre a Ana Elisa"
           >
-            <span aria-hidden="true">↗</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 17L17 7M10 7H17V14"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </a>
         </div>
         <p className={styles.subtitle}>— FASHION DESIGNER • {profile.location}</p>
