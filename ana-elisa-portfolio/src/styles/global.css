@@ -7,6 +7,9 @@
   --cream: #F8F4ED;
   --black: #0A0A0A;
   --white: #FFFFFF;
+  --page-gutter: clamp(1rem, 3vw, 2rem);
+  --section-padding-y: clamp(4rem, 8vw, 6rem);
+  --content-width: 1200px;
 }
 
 /* ─── Reset ─── */
@@ -31,6 +34,10 @@ body {
   background-color: var(--black);
   color: var(--white);
   overflow-x: hidden;
+  min-width: 320px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.intro-locked {
@@ -43,7 +50,21 @@ img {
   max-width: 100%;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: 1rem;
+  }
+}
+

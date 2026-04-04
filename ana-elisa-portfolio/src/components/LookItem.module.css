@@ -17,6 +17,7 @@
   position: relative;
   cursor: zoom-in;
   overflow: hidden;
+  min-height: 240px;
 }
 
 .imageWrap img {
@@ -55,7 +56,7 @@
 .info {
   background: var(--cream);
   color: var(--black);
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 5vw, 3rem) var(--page-gutter);
 }
 
 .info h3 {
@@ -91,3 +92,32 @@
   .look.reverse .imageWrap { order: 2; }
   .look.reverse .info       { order: 1; }
 }
+
+@media (max-width: 767px) {
+  .imageWrap {
+    min-height: 180px;
+  }
+
+  .zoom {
+    width: 2.2rem;
+    height: 2.2rem;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .info h3 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .info p {
+    font-size: 0.95rem;
+    line-height: 1.72;
+  }
+
+  .materials {
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+}
+
