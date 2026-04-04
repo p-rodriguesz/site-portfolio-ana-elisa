@@ -21,12 +21,18 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 html,
 body,
 #root {
   min-height: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -38,6 +44,8 @@ body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
 }
 
 body.intro-locked {

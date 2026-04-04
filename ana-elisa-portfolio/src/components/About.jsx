@@ -12,7 +12,7 @@ export default function About() {
         ref={ref}
       >
         <div className={styles.titleRow}>
-          <h2 id="sobre">SOBRE</h2>
+          <h2 id="sobre" className={styles.sobreTitle}>SOBRE</h2>
           <a
             className={styles.moreButton}
             href="/sobre"

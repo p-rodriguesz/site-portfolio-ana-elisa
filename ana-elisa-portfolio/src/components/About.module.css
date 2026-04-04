@@ -32,6 +32,10 @@
   margin-bottom: 0;
 }
 
+.sobreTitle {
+  scroll-margin-top: clamp(4.5rem, 9vw, 6.5rem);
+}
+
 .about h2::after {
   content: '';
   display: block;
