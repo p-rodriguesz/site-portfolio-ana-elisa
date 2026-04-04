@@ -12,6 +12,13 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
 .container.visible {
   opacity: 1;
   transform: translateY(0);
@@ -32,6 +39,48 @@
   height: 4px;
   background: var(--red);
   margin-top: 1rem;
+}
+
+.moreButton {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 57, 70, 0.55);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.42), rgba(230, 57, 70, 0.08)),
+    rgba(255, 255, 255, 0.12);
+  color: var(--red);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 0 1px rgba(230, 57, 70, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  text-decoration: none;
+  margin-top: 0.2rem;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.moreButton:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: linear-gradient(145deg, var(--red), #ff7585);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 14px 34px rgba(230, 57, 70, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.moreButton:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
 }
 
 .subtitle {
@@ -79,3 +128,16 @@
   text-transform: uppercase;
   border: 2px solid var(--red);
 }
+
+@media (max-width: 767px) {
+  .titleRow {
+    gap: 0.65rem;
+  }
+
+  .moreButton {
+    width: 2.85rem;
+    height: 2.85rem;
+    margin-top: 0.15rem;
+  }
+}
+
