@@ -14,6 +14,10 @@ const HERO_SLIDES = [
   {
     src: "/images/dont-complain.webp",
     alt: "Dont complain",
+  },
+  {
+    src: "/images/david-bowie-hero.webp",
+    alt: "David bowie",
   }
 ];
 
@@ -38,27 +42,51 @@ const heroVariants = {
   },
 };
 
+const slideVariants = {
+  from: (direction) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    scale: 1.045,
+    opacity: 1,
+  }),
+  center: {
+    x: 0,
+    scale: 1,
+    opacity: 1,
+  },
+  to: (direction) => ({
+    x: direction > 0 ? "-100%" : "100%",
+    scale: 0.985,
+    opacity: 1,
+  }),
+};
+
 export default function Hero({ onExitComplete }) {
   const [isLeaving, setIsLeaving] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [carouselDirection, setCarouselDirection] = useState(1);
+
+  function moveSlide(direction) {
+    setCarouselDirection(direction);
+    setActiveSlide((current) => (current + direction + HERO_SLIDES.length) % HERO_SLIDES.length);
+  }
+
+  function goToNextSlide() {
+    moveSlide(1);
+  }
+
+  function goToPreviousSlide() {
+    moveSlide(-1);
+  }
 
   useEffect(() => {
     if (isLeaving) return;
 
     const timer = window.setTimeout(() => {
-      setActiveSlide((current) => (current + 1) % HERO_SLIDES.length);
+      goToNextSlide();
     }, 10000);
 
     return () => window.clearTimeout(timer);
   }, [activeSlide, isLeaving]);
-
-  function goToPreviousSlide() {
-    setActiveSlide((current) => (current - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  }
-
-  function goToNextSlide() {
-    setActiveSlide((current) => (current + 1) % HERO_SLIDES.length);
-  }
 
   function handleDiscover() {
     if (!isLeaving) {
@@ -79,20 +107,22 @@ export default function Hero({ onExitComplete }) {
       }}
     >
       <div className={styles.pageFrame}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync" custom={carouselDirection} initial={false}>
           <motion.img
             key={HERO_SLIDES[activeSlide].src}
             src={HERO_SLIDES[activeSlide].src}
             alt={HERO_SLIDES[activeSlide].alt}
             className={styles.pageImage}
-            initial={{ opacity: 0, scale: 1.035, x: 32 }}
-            animate={{ opacity: 1, scale: 1.02, x: 0 }}
-            exit={{ opacity: 0, scale: 1.035, x: -32 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            custom={carouselDirection}
+            variants={slideVariants}
+            initial="from"
+            animate="center"
+            exit="to"
+            transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
           />
         </AnimatePresence>
 
-        <div className={styles.paperWash} aria-hidden="true" />
+        <div className={styles.pageWash} aria-hidden="true" />
 
         <button
           className={`${styles.carouselArrow} ${styles.carouselArrowLeft}`}

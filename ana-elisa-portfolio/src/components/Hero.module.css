@@ -16,9 +16,8 @@
 
 .pageFrame {
   position: relative;
-  width: 100%;
-  height: 100dvh;
-  min-height: 100svh;
+  width: 100vw;
+  height: 100%;
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 240, 230, 0.97) 100%);
@@ -153,36 +152,26 @@
 }
 
 @media (max-width: 767px) {
-  .pageImage {
-    object-fit: contain;
-    object-position: center;
-    transform: none;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 240, 230, 0.97) 100%);
-  }
-
   .carouselArrow {
-    width: 2.7rem;
-    height: 2.7rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .carouselArrowLeft {
-    left: 0.6rem;
+    left: 0.7rem;
   }
 
   .carouselArrowRight {
-    right: 0.6rem;
+    right: 0.7rem;
   }
 
   .carouselArrow span {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
   }
 
   .revealButton {
-    bottom: 0.9rem;
-    max-width: calc(100vw - 1.2rem);
-    padding: 11px 16px;
-    font-size: 0.64rem;
-    letter-spacing: 0.18em;
+    bottom: 1rem;
+    max-width: calc(100vw - 2rem);
   }
 }
 
