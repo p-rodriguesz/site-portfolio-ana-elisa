@@ -1,5 +1,5 @@
 .contact {
-  padding: 6rem 2rem;
+  padding: var(--section-padding-y) var(--page-gutter);
   background: var(--red);
   text-align: center;
 }
@@ -19,22 +19,16 @@
   font-family: 'Bebas Neue', cursive;
   font-size: clamp(3rem, 12vw, 5rem);
   color: var(--white);
-  margin-bottom: 3rem;
-  letter-spacing: 10px;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  letter-spacing: clamp(4px, 1vw, 10px);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  max-width: 600px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  max-width: 900px;
   margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 .item h3 {
@@ -57,10 +51,9 @@
   opacity: 0.75;
 }
 .instagramButton {
-  margin: 10px auto;
-
-  width: 55px;
-  height: 55px;
+  margin: 10px auto 0;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
 
   display: flex;
@@ -87,3 +80,23 @@
 .instagramButton:hover .icon {
   color: white;
 }
+
+@media (max-width: 767px) {
+  .contact h2 {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .grid {
+    max-width: 420px;
+  }
+
+  .item h3 {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .item a {
+    font-size: clamp(1rem, 6vw, 1.4rem);
+  }
+}
+

@@ -1,11 +1,11 @@
 .collection {
   background: var(--black);
-  padding-top: 6rem;
+  padding-top: var(--section-padding-y);
 }
 
 .title {
   text-align: center;
-  padding: 0 2rem 4rem;
+  padding: 0 var(--page-gutter) clamp(2rem, 5vw, 4rem);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -20,12 +20,12 @@
   font-family: 'Bebas Neue', cursive;
   font-size: clamp(3rem, 12vw, 10rem);
   color: var(--white);
-  letter-spacing: 10px;
+  letter-spacing: clamp(4px, 1vw, 10px);
 }
 
 .fullWidth {
   width: 100%;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
 }
 
 .fullWidth img {
@@ -34,10 +34,10 @@
 }
 
 .description {
-  padding: 4rem 2rem;
+  padding: clamp(2.5rem, 6vw, 4rem) var(--page-gutter);
   background: var(--cream);
   color: var(--black);
-  margin: 4rem 0;
+  margin: clamp(2rem, 5vw, 4rem) 0;
   text-align: center;
 }
 
@@ -52,6 +52,23 @@
 .description p {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   line-height: 1.9;
-  max-width: 900px;
+  max-width: 65ch;
   margin: 0 auto;
 }
+
+@media (max-width: 767px) {
+  .title h2 {
+    font-size: clamp(2.6rem, 15vw, 5rem);
+  }
+
+  .description h3 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .description p {
+    line-height: 1.75;
+    font-size: 0.98rem;
+  }
+}
+

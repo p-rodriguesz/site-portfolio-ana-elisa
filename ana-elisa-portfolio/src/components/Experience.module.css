@@ -1,5 +1,5 @@
 .experience {
-  padding: 6rem 2rem;
+  padding: var(--section-padding-y) var(--page-gutter);
   background: var(--cream);
   color: var(--black);
 }
@@ -51,8 +51,8 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  right: -10px;
-  bottom: -10px;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: clamp(4px, 1vw, 10px);
   border: 3px solid var(--red);
   z-index: -1;
 }
@@ -60,22 +60,16 @@
 .card.visible {
   opacity: 1;
   transform: translateY(0);
-}
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 
-.card h3 {
+  max-width: var(--content-width);
   font-family: 'Bebas Neue', cursive;
   font-size: 1.5rem;
-  color: var(--red);
-  margin-bottom: 0.3rem;
-  letter-spacing: 2px;
-}
-
-.period {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 2px;
   color: var(--black);
-  opacity: 0.5;
+  padding: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: 1rem;
 }
 
@@ -86,7 +80,7 @@
 
 /* Certificados */
 .certs {
-  max-width: 1000px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -101,14 +95,8 @@
 
 .certGrid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .certGrid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 .certImg {
@@ -116,3 +104,23 @@
   height: auto;
   border: 3px solid var(--black);
 }
+
+@media (max-width: 767px) {
+  .title {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card p {
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .certsTitle {
+    font-size: 2rem;
+  }
+}
+
