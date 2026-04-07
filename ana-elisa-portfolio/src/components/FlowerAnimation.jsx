@@ -1,12 +1,39 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./FlowerAnimation.module.css";
+
+const MOBILE_QUERY = "(max-width: 767px)";
+const FLOWER_COUNTS = {
+  mobile: { back: 5, front: 4 },
+  desktop: { back: 9, front: 8 },
+};
 
 function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export default function FlowerAnimation({ title }) {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return false;
+    }
+    return window.matchMedia(MOBILE_QUERY).matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
+
+    const media = window.matchMedia(MOBILE_QUERY);
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(media.matches);
+    media.addEventListener("change", handleChange);
+
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
   const { frontFlowers, backFlowers } = useMemo(() => {
+    const counts = isMobile ? FLOWER_COUNTS.mobile : FLOWER_COUNTS.desktop;
+
     const make = (count, layer) =>
       Array.from({ length: count }, (_, index) => {
         const isEdgeFlower = index % 3 === 0;
@@ -30,10 +57,10 @@ export default function FlowerAnimation({ title }) {
       });
 
     return {
-      backFlowers: make(7, "back"),
-      frontFlowers: make(6, "front"),
+      backFlowers: make(counts.back, "back"),
+      frontFlowers: make(counts.front, "front"),
     };
-  }, []);
+  }, [isMobile]);
 
   const renderFlowers = (flowers, layerClass, imgClass) =>
     flowers.map((f, i) => (
