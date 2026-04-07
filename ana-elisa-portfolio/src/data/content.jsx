@@ -43,6 +43,9 @@ export const collections = [
 A coleção propõe um diálogo entre arte, natureza e emoção, onde o vestuário se torna uma extensão da paisagem, denso, poético e profundamente sensorial.
 
 Composta por peças que evocam a opulência barroca, com detalhes como corsets estruturados, saias volumosas e aplicações de flores. As linhas curvas, as texturas ricas e a paleta vibrante remetem a um jardim em expansão, onde cada peça é uma expressão da natureza em sua forma mais intensa e emocional.`,
+    extraInfo: `A persuasão desta coleção nasce do contraste entre delicadeza e excesso. As flores deixam de ser apenas ornamento e assumem papel narrativo: conduzem o olhar, ampliam a sensação de movimento e reforçam o impacto dramático de cada silhueta.
+
+No conjunto, a proposta cria uma experiência emocional que aproxima arte e moda, convidando o público a ler cada look como uma cena viva de um jardim teatral.`,
     moodboard: "/images/moodboard-01.svg",   // placeholder
     croquis:   "/images/croquis-01.svg",     // placeholder
     looks: [
@@ -65,7 +68,7 @@ As linhas curvas, as texturas ricas e a paleta vibrante evocam um jardim em expa
             </div>
          </>
         ),
-        image: "/images/look-01.svg",        // placeholder
+        image: "/images/passarela.webp",        // placeholder
       },
       {
         id: "look-02",
@@ -87,7 +90,7 @@ O look apresenta um visual conceitual e impactante, misturando a leveza da organ
             </>
         ),
 
-        image: "/images/look-02.svg",        // placeholder
+        image: "/images/segundacol.webp",        // placeholder
       },
     ],
   },

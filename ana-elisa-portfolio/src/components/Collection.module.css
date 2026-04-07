@@ -3,9 +3,42 @@
   padding-top: var(--section-padding-y);
 }
 
+.collectionSelector {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0 var(--page-gutter) 1.5rem;
+  flex-wrap: wrap;
+}
+
+.collectionButton {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.collectionButton:hover,
+.collectionButton:focus-visible {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.collectionButtonActive {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
 .title {
   text-align: center;
-  padding: 0 var(--page-gutter) clamp(2rem, 5vw, 4rem);
+  padding: 0 var(--page-gutter) clamp(3.4rem, 8vw, 6.4rem);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -21,6 +54,82 @@
   font-size: clamp(3rem, 12vw, 10rem);
   color: var(--white);
   letter-spacing: clamp(4px, 1vw, 10px);
+}
+
+.titleToggle {
+  margin-top: calc(0.8rem + 70px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.titleToggle:hover,
+.titleToggle:focus-visible {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.78);
+}
+
+.introPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 0.5s ease, opacity 0.35s ease;
+}
+
+.introPanelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.introPanelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.introPanelClosed {
+  pointer-events: none;
+}
+
+.secondCollectionSection {
+  padding: clamp(5rem, 11vw, 9rem) var(--page-gutter) clamp(3rem, 7vw, 5.4rem);
+}
+
+.secondCollectionTitle {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 12vw, 10rem);
+  color: var(--white);
+  letter-spacing: clamp(4px, 1vw, 10px);
+  text-align: center;
+  margin: 0 0 clamp(1.8rem, 4vw, 3rem);
+}
+
+.secondCollectionToggle {
+  display: block;
+  margin: 0 auto clamp(1.6rem, 3vw, 2.4rem);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondCollectionToggle:hover,
+.secondCollectionToggle:focus-visible {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.78);
 }
 
 .fullWidth {
@@ -56,8 +165,18 @@
   margin: 0 auto;
 }
 
+.moreInfoPanel {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding-top: 1rem;
+}
+
 @media (max-width: 767px) {
   .title h2 {
+    font-size: clamp(2.6rem, 15vw, 5rem);
+  }
+
+  .secondCollectionTitle {
     font-size: clamp(2.6rem, 15vw, 5rem);
   }
 
@@ -69,6 +188,12 @@
   .description p {
     line-height: 1.75;
     font-size: 0.98rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introPanel {
+    transition: none;
   }
 }
 
