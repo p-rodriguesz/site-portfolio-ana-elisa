@@ -1,73 +1,103 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./FlowerAnimation.module.css";
 
-// Helper to produce a random integer between min and max (inclusive)
+const MOBILE_QUERY = "(max-width: 767px)";
+const FLOWER_COUNTS = {
+  mobile: { back: 5, front: 4 },
+  desktop: { back: 9, front: 8 },
+};
+
 function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export default function FlowerAnimation({ title }) {
-  // Generate a stable set of decorative flowers on first render
-  const { frontFlowers, backFlowers } = useMemo(() => {
-    // Increased defaults per user request
-    const frontCount = 12;
-    const backCount = 9;
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return false;
+    }
+    return window.matchMedia(MOBILE_QUERY).matches;
+  });
 
-    const make = (count, area) =>
-      Array.from({ length: count }).map(() => {
-        const top = rand(0, 90);
-        const left = rand(-20, 100);
-        // Slightly reduce max front size so many flowers don't overcrowd the title
-        const size = rand(area === "front" ? 50 : 70, area === "front" ? 140 : 200);
-        const rot = rand(-45, 45);
-        const opacity = 1; // per request, 100%
-        return { top: `${top}%`, left: `${left}%`, size: `${size}px`, rot: `rotate(${rot}deg)`, opacity };
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
+
+    const media = window.matchMedia(MOBILE_QUERY);
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(media.matches);
+    media.addEventListener("change", handleChange);
+
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
+  const { frontFlowers, backFlowers } = useMemo(() => {
+    const counts = isMobile ? FLOWER_COUNTS.mobile : FLOWER_COUNTS.desktop;
+
+    const make = (count, layer) =>
+      Array.from({ length: count }, (_, index) => {
+        const isEdgeFlower = index % 3 === 0;
+        const top = isEdgeFlower ? rand(-14, 108) : rand(10, 92);
+        const left = isEdgeFlower ? rand(-18, 112) : rand(6, 94);
+        const size = rand(layer === "front" ? 54 : 74, layer === "front" ? 134 : 178);
+        const rotate = rand(-28, 28);
+        const duration = rand(layer === "front" ? 10 : 12, layer === "front" ? 15 : 18);
+        const delay = rand(0, 8) * 0.28;
+        const opacity = layer === "front" ? 0.96 : 0.64;
+
+        return {
+          top: `${top}%`,
+          left: `${left}%`,
+          size: `${size}px`,
+          rotate: `${rotate}deg`,
+          duration: `${duration}s`,
+          delay: `${delay}s`,
+          opacity,
+        };
       });
 
     return {
-      frontFlowers: make(frontCount, "front"),
-      backFlowers: make(backCount, "back"),
+      backFlowers: make(counts.back, "back"),
+      frontFlowers: make(counts.front, "front"),
     };
-  }, []);
+  }, [isMobile]);
+
+  const renderFlowers = (flowers, layerClass, imgClass) =>
+    flowers.map((f, i) => (
+      <span
+        key={`${layerClass}-${i}`}
+        className={`${styles.flowerContainer} ${layerClass}`}
+        style={{
+          top: f.top,
+          left: f.left,
+          width: f.size,
+          height: f.size,
+          opacity: f.opacity,
+          transform: `translate(-50%, -50%) rotate(${f.rotate})`,
+          animationDelay: f.delay,
+        }}
+      >
+        <img
+          src="/images/O808.svg"
+          alt=""
+          aria-hidden="true"
+          className={`${styles.flowerMark} ${imgClass}`}
+          style={{ animationDuration: f.duration, animationDelay: f.delay }}
+        />
+      </span>
+    ));
 
   return (
     <h2 className={styles.titleWithFlowers}>
-      {/* Back flowers */}
-      {backFlowers.map((f, i) => (
-        <span
-          key={`back-${i}`}
-          className={`${styles.flowerContainer} ${styles.flowerContainerBehind}`}
-          style={{ top: f.top, left: f.left, width: f.size, height: f.size, zIndex: 1, opacity: f.opacity }}
-          aria-hidden
-        >
-          <img
-            src="/images/O808.svg"
-            alt=""
-            className={styles.flowerBack}
-            style={{ transform: f.rot }}
-          />
-        </span>
-      ))}
+      <span className={styles.titleLayer} aria-hidden="true">
+        {renderFlowers(backFlowers, styles.flowerBackLayer, styles.flowerBack)}
+      </span>
 
-      {/* Title text (inherits font & size from the container) */}
       <span className={styles.titleText}>{title}</span>
 
-      {/* Front flowers */}
-      {frontFlowers.map((f, i) => (
-        <span
-          key={`front-${i}`}
-          className={`${styles.flowerContainer} ${styles.flowerContainerFront}`}
-          style={{ top: f.top, left: f.left, width: f.size, height: f.size, zIndex: 5, opacity: f.opacity }}
-          aria-hidden
-        >
-          <img
-            src="/images/O808.svg"
-            alt=""
-            className={styles.flowerFront}
-            style={{ transform: f.rot }}
-          />
-        </span>
-      ))}
+      <span className={styles.titleLayer} aria-hidden="true">
+        {renderFlowers(frontFlowers, styles.flowerFrontLayer, styles.flowerFront)}
+      </span>
     </h2>
   );
 }

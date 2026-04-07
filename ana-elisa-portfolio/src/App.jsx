@@ -13,10 +13,31 @@ import ScrollToTop from "./components/ScrollToTop";
 import MoreAbout from "./components/MoreAbout";
 
 export default function App() {
-  const [introComplete, setIntroComplete] = useState(false);
+  const [introComplete, setIntroComplete] = useState(() => Boolean(window.location.hash));
   const [pathname, setPathname] = useState(window.location.pathname);
 
   const isBlankPage = pathname === "/sobre" || pathname === "/sobre/";
+
+  useEffect(() => {
+    if (isBlankPage || !introComplete || !window.location.hash) return;
+
+    const scrollToHash = () => {
+      const targetId = window.location.hash.replace("#", "");
+      const target = targetId ? document.getElementById(targetId) : null;
+
+      if (target) {
+        target.scrollIntoView({ block: "start", behavior: "auto" });
+      }
+    };
+
+    const raf = window.requestAnimationFrame(scrollToHash);
+    window.addEventListener("hashchange", scrollToHash);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, [introComplete, isBlankPage, pathname]);
 
   useEffect(() => {
     const handlePopState = () => setPathname(window.location.pathname);
