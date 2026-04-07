@@ -40,7 +40,7 @@ export default function About() {
 
         <div className={styles.infoBlock}>
           <h3>PERFIL</h3>
-          <p>{profile.about}</p>
+          <p>{profile.aboutSummary}</p>
         </div>
 
         <div className={styles.infoBlock}>

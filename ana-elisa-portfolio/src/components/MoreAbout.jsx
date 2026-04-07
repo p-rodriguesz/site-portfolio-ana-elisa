@@ -1,25 +1,48 @@
 import Navbar from "./Navbar";
+import { profile } from "../data/content";
 import styles from "./MoreAbout.module.css";
-
-const aboutText = `Substitua este texto pelo conteúdo da sua página "Sobre".
-Aqui você pode contar sua trajetória, sua visão como designer e o tipo de trabalho que deseja destacar no portfólio.`;
 
 export default function MoreAbout() {
   return (
-    <main className={styles.page} aria-label="Página sobre Ana Elisa">
+    <main className={styles.page} aria-label="Página MOREABOUT">
       <Navbar />
 
       <section className={styles.content}>
-        <p className={styles.kicker}>SOBRE</p>
-        <h1 className={styles.title}>Página em construção</h1>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>Fashion as self-translation</h1>
 
-        <div className={styles.textCard}>
-          <p>{aboutText}</p>
+          <div className={styles.textCard}>
+            <div className={styles.profileBlock}>
+              <span className={styles.profileLabel}>Perfil</span>
+              <div className={styles.profileText}>{profile.aboutFull}</div>
+            </div>
+
+            <div className={styles.profileBlock}>
+              <span className={styles.profileLabel}>Foco</span>
+              <div className={styles.tagGrid}>
+                {profile.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <a className={styles.backButton} href="/#about">
+            ← voltar para a página principal
+          </a>
         </div>
 
-        <a className={styles.backButton} href="/#about">
-          ← voltar para a página principal
-        </a>
+        <aside className={styles.visual} aria-label="Espaço reservado para imagem">
+          <div className={styles.visualFrame}>
+            <img
+              className={styles.visualImage}
+              src="/images/8scmbf.webp"
+              alt="Retrato editorial da Ana Elisa"
+            />
+          </div>
+        </aside>
       </section>
     </main>
   );

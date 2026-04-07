@@ -6,11 +6,18 @@ export const profile = {
   email: "anaelisasantos368@gmail.com", // substitua pelo e-mail real
   phone: "(61) 99613-1810",
   tagline: "FASHION IS A SELF-TRANSLATION",
-  about: (
+  aboutSummary: "Estudante de Design de Moda no IESB com foco em coleções conceituais e identidade visual.",
+  aboutFull: (
       <>
         <strong>Ana Elisa, 18 anos</strong>
         <br /><br />
-        Estudante de Design de Moda no IESB com foco em criação de coleções conceituais e desenvolvimento de identidade visual. Apaixonada por transformar referências culturais e artísticas em peças que comunicam narrativas únicas.
+        Comecei minha trajetória na moda em 2025, ao ingressar no curso de Design de Moda no IESB, movida pela vontade de transformar ideias, referências e sentimentos em algo visual e concreto. Desde então, venho descobrindo na criação um espaço de expressão pessoal, onde consigo traduzir o que observo, vivo e imagino.
+
+        <br /><br />
+        Tenho um interesse especial por coleções conceituais e pelo desenvolvimento de identidade visual, explorando a moda como uma forma de contar histórias. Muitas das minhas inspirações vêm de referências culturais, artísticas e simbólicas que me atravessam de alguma forma — e que encontro na moda um meio de ressignificar.
+
+        <br /><br />
+        Ao longo do processo criativo, gosto de experimentar materiais, formas e composições, buscando construir peças que não sejam apenas estéticas, mas que carreguem intenção e narrativa. Para mim, a moda vai além do vestir: é uma linguagem, uma forma de comunicar e de existir.
       </>
   ),
 
