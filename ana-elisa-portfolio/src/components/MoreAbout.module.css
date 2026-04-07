@@ -1,12 +1,55 @@
 .page {
   min-height: 100vh;
   width: 100%;
-  background: var(--white);
+  background: var(--black);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--page-gutter) + env(safe-area-inset-top)) var(--page-gutter)
-    calc(var(--page-gutter) + env(safe-area-inset-bottom)) var(--page-gutter);
+  gap: 1.5rem;
+  padding: calc(6rem + env(safe-area-inset-top)) var(--page-gutter)
+    calc(4rem + env(safe-area-inset-bottom)) var(--page-gutter);
+  text-align: center;
+}
+
+.kicker {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.12em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.textCard {
+  width: min(100%, 760px);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+.textCard p {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.88);
+  white-space: pre-line;
 }
 
 .backButton {
@@ -18,12 +61,25 @@
   padding: 1rem 1.4rem;
   border: 1px solid var(--red);
   border-radius: 999px;
-  background: rgba(230, 57, 70, 0.08);
+  background: rgba(230, 57, 70, 0.16);
+  color: var(--white);
   text-align: center;
   transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 767px) {
+  .content {
+    padding-top: 5.5rem;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .textCard {
+    border-radius: 22px;
+  }
+
   .backButton {
     font-size: 0.72rem;
     padding: 0.9rem 1.1rem;

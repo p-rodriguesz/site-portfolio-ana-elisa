@@ -1,195 +1,121 @@
 .titleWithFlowers {
   position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--white);
-  text-align: center;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-}
-
-/* Title text kept on its own layer; restore original font/size behavior and avoid heavy stroke */
-.titleText {
-  position: relative;
-  z-index: 6; /* sit above decorative SVGs */
-  display: inline-block;
-}
-
-.flowerContainerInline {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-}
-
-.flowerInline {
   width: 100%;
-  height: 100%;
-  display: block;
-  animation: flowerBloom 3s ease-out forwards;
-  filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.4));
-  object-fit: contain;
+  max-width: 100%;
+  overflow: visible;
+  isolation: isolate;
+  text-align: center;
+  line-height: 1;
 }
 
-/* Generic container used by randomized flower instances */
+.titleLayer {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.titleText {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
 .flowerContainer {
   position: absolute;
   display: block;
-  pointer-events: none; /* never interfere with text interaction */
+  pointer-events: none;
   transform-origin: center center;
+  animation: flowerReveal 700ms ease-out both;
 }
 
-/* Behind decorative flower */
-.flowerContainerBehind {
-  /* default placement is handled inline via style attributes */
-  z-index: 1;
+.flowerBackLayer {
+  z-index: 0;
+}
+
+.flowerFrontLayer {
+  z-index: 3;
+}
+
+.flowerMark {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transform-origin: center center;
+  will-change: transform;
+  animation: flowerSway 12s ease-in-out infinite alternate;
 }
 
 .flowerBack {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
-}
-
-/* Front decorative flower: visually in front and full opacity per request */
-.flowerContainerFront {
-  z-index: 5;
+  opacity: 0.62;
 }
 
 .flowerFront {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 1; /* full opacity as requested */
-  mix-blend-mode: normal;
-  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.35));
+  opacity: 0.96;
 }
 
-/* Behind decorative flower */
-.flowerContainerBehind {
-  position: absolute;
-  left: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 160px;
-  height: 160px;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.45;
-}
-
-.flowerBack {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: blur(0.5px) drop-shadow(0 6px 18px rgba(0,0,0,0.35));
-}
-
-/* Front decorative flower: visually in front but low-opacity so it doesn't block text */
-.flowerContainerFront {
-  position: absolute;
-  right: -4%;
-  top: 40%;
-  transform: translateY(-50%);
-  width: 180px;
-  height: 180px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.flowerFront {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.28; /* keep it decorative */
-  mix-blend-mode: screen; /* lighter look over dark backgrounds */
-  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.35));
-}
-
-/* ─── Animações ─── */
-
-@keyframes flowerBloom {
-  0% {
+@keyframes flowerReveal {
+  from {
     opacity: 0;
-    transform: scale(0) translateY(20px);
-    filter: drop-shadow(0 0 0px rgba(230, 57, 70, 0.6));
   }
-  70% {
+
+  to {
     opacity: 1;
-    transform: scale(1.1) translateY(-10px);
-    filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.8));
   }
+}
+
+@keyframes flowerSway {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  28% {
+    transform: translate3d(4px, -6px, 0) rotate(4deg) scale(1.03);
+  }
+
+  58% {
+    transform: translate3d(-6px, 3px, 0) rotate(-3deg) scale(0.98);
+  }
+
   100% {
-    opacity: 1;
-    transform: scale(1) translateY(0px);
-    filter: drop-shadow(0 0 8px rgba(230, 57, 70, 0.6));
+    transform: translate3d(7px, 2px, 0) rotate(5deg) scale(1.04);
   }
 }
 
-
-/* ─── Responsivo ─── */
 @media (max-width: 768px) {
-  .title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-  }
-
-  .titleWithFlowers {
-    overflow: clip;
-  }
-
-  .flowerContainerBehind {
-    left: 0;
-    width: 120px;
-    height: 120px;
-  }
-
-  .flowerContainerFront {
-    right: 0;
-    width: 130px;
-    height: 130px;
+  .titleText {
+    padding-inline: 0.75rem;
   }
 
   .flowerContainer {
-    margin: 0 0.25rem;
+    animation-duration: 580ms;
+  }
+
+  .flowerMark {
+    animation-duration: 14s;
   }
 }
 
 @media (max-width: 480px) {
-  .title {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+  .titleText {
+    padding-inline: 0.5rem;
+  }
+
+  .flowerMark {
+    animation-duration: 16s;
   }
 }
 
-/* Keep flowers from overflowing on very small screens: reduce size slightly */
-@media (max-width: 480px) {
-  .titleWithFlowers {
-    overflow: clip;
-  }
-
-  .flowerContainerBehind {
-    width: 95px;
-    height: 95px;
-  }
-
-  .flowerContainerFront {
-    width: 105px;
-    height: 105px;
-  }
-
-  .flowerContainer {
-    transform: scale(0.8);
+@media (prefers-reduced-motion: reduce) {
+  .flowerContainer,
+  .flowerMark {
+    animation: none;
   }
 }
 

@@ -12,6 +12,8 @@ const links = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled]  = useState(false);
+  const isStandalonePage =
+    typeof window !== "undefined" && (window.location.pathname === "/sobre" || window.location.pathname === "/sobre/");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -20,10 +22,16 @@ export default function Navbar() {
   }, []);
 
   const handleLink = () => setMenuOpen(false);
+  const navLinks = links.map((link) => ({
+    ...link,
+    href: isStandalonePage ? `/${link.href}` : link.href,
+  }));
+
+  const logoHref = isStandalonePage ? "/" : "#hero";
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
-      <a href="#hero" className={styles.logo}>AEA</a>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`} aria-label="Navegação principal">
+      <a href={logoHref} className={styles.logo}>AEA</a>
 
       {/* Hamburguer */}
       <button
@@ -38,7 +46,7 @@ export default function Navbar() {
 
       {/* Links */}
       <ul className={`${styles.menu} ${menuOpen ? styles.active : ""}`}>
-        {links.map((l) => (
+        {navLinks.map((l) => (
           <li key={l.href}>
             <a href={l.href} onClick={handleLink}>
               {l.label}
