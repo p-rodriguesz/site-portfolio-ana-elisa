@@ -46,8 +46,8 @@ Composta por peças que evocam a opulência barroca, com detalhes como corsets e
     extraInfo: `A persuasão desta coleção nasce do contraste entre delicadeza e excesso. As flores deixam de ser apenas ornamento e assumem papel narrativo: conduzem o olhar, ampliam a sensação de movimento e reforçam o impacto dramático de cada silhueta.
 
 No conjunto, a proposta cria uma experiência emocional que aproxima arte e moda, convidando o público a ler cada look como uma cena viva de um jardim teatral.`,
-    moodboard: "/images/moodboard-01.svg",   // placeholder
-    croquis:   "/images/croquis-01.svg",     // placeholder
+    moodboard: "/images/moodboard-co1.png",   // placeholder
+    croquis:   "/images/croquis.webp",     // placeholder
     looks: [
       {
         id: "look-01",

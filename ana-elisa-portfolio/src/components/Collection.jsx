@@ -83,6 +83,10 @@ export default function Collection() {
           className={`${styles.introPanel} ${isIntroVisible ? styles.introPanelOpen : styles.introPanelClosed}`}
         >
           <div className={styles.introPanelInner}>
+            {activeCollection.moodboard && (
+              <p className={styles.moodboardLabel}>Moodboard</p>
+            )}
+
             {/* Moodboard full width */}
             {activeCollection.moodboard && (
               <div className={styles.fullWidth}>
